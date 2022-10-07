@@ -1,1 +1,1 @@
-Busca cep via ajax 
+Busca cep
