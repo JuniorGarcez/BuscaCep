@@ -20,20 +20,27 @@
 
 // *** AJAX ***
 
-    let xhr = new XMLHttpRequest();
-    function buscacep(cep){
-        cep = $("#cep").val().replace('-', '').replace('.', '')
-        if(cep.length == 8){
-            xhr.onreadystatechange = ()=>{
-                if(xhr.readyState == 4 && xhr.status == 200){
-                    let retorno = JSON.parse(xhr.responseText);
-                    $('#logradouro').val(retorno.logradouro)
-                    $('#cidade').val(retorno.localidade)
-                    $('#bairro').val(retorno.bairro)
-                    $('#estado').val(retorno.uf)
-                }
+let xhr = new XMLHttpRequest();
+function buscacep(cep) {
+    cep = $("#cep").val().replace('-', '').replace('.', '')
+    if (cep.length == 8) {
+        xhr.onreadystatechange = () => {
+            if (xhr.readyState == 4 && xhr.status == 200) {
+                let retorno = JSON.parse(xhr.responseText);
+                $('#logradouro').val(retorno.logradouro)
+                $('#cidade').val(retorno.localidade)
+                $('#bairro').val(retorno.bairro)
+                $('#estado').val(retorno.uf)
             }
-            xhr.open('GET', `https://viacep.com.br/ws/${cep}/json/` )
-            xhr.send()
         }
+        xhr.open('GET', `https://viacep.com.br/ws/${cep}/json/`)
+        xhr.send()
     }
+}
+
+
+const chk = document.getElementById('chk')
+
+chk.addEventListener('change', () => {
+    document.body.classList.toggle('dark')
+})
